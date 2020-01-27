@@ -61,13 +61,22 @@ public class DLList
         if( n < 0 ||  size < n){
             System.out.println("Error! index out of bound.");
             return -1;
-        } else{
-            Node temp = sentinel.next;
-            for(int i= 0; n!=i; i++){
-                temp = temp.next;
+        }else{ 
+            if(n <= size/2){
+                Node temp = sentinel.next;
+                for(int i= 0; n!=i; i++){
+                    temp = temp.next;
+                }
+                return temp.item;
+            }else{
+                Node temp = sentinel.prev;
+                for(int i= n; n!=i; i--){
+                    temp = temp.prev;
+                }
+                return temp.item;
             }
-            return temp.item;
-        }
+            
+       }
         
     }
    
