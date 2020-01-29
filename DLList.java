@@ -37,6 +37,9 @@ public class DLList
        
     }
     
+    public int getFirst(){
+    	return sentinel.next.item;
+    }
     
     public int getLast(){
         return sentinel.prev.item;
@@ -54,30 +57,65 @@ public class DLList
         size++;
     }
     
-    public int get(int n){
-        if( n < 0 ||  size < n){
+    public int get(int i){
+    	if( i < 0 ||  size < i){
             System.out.println("Error! index out of bound.");
             return -1;
         }else{ 
-            if(n <= size/2){
+            if(i <= size/2){
                 Node temp = sentinel.next;
-                for(int i= 0; n!=i; i++){
+                for(int n= 0; i!=n; n++){
                     temp = temp.next;
                 }
                 return temp.item;
             }else{
                 Node temp = sentinel.prev;
-                for(int i= n; n!=i; i--){
+                for(int n= i; i!=n; n--){
                     temp = temp.prev;
                 }
                 return temp.item;
             }
             
-       }
-        
+        }        
+    }
+    
+    public void removeFirst() {
+    	sentinel.next.next.prev = sentinel;
+    	sentinel.next = sentinel.next.next;
+    }
+    
+    public void removeLast() {
+    	sentinel.prev.prev.next = sentinel;
+    	sentinel.prev = sentinel.prev.prev;
+    }
+
+    public void remove(int i) {
+    	 if( i < 0 ||  size < i){
+             System.out.println("Error! index out of bound.");
+            
+         }else{ 
+             if(i <= size/2){
+                 Node temp = sentinel.next;
+                 for(int n= 0; i!=n; n++){
+                     temp = temp.next;
+                 }
+                 
+                 temp.prev.next = temp.next;
+                 temp.next.prev = temp.prev;
+             }else{
+                 Node temp = sentinel.prev;
+                 for(int n= i; i!=n; n--){
+                     temp = temp.prev;
+                 }
+                 
+                 temp.prev.next = temp.next;
+                 temp.next.prev = temp.prev;
+             }
+             
+         }
     }
    
-   
+    
    
 }
 /*
@@ -87,13 +125,13 @@ where each node contains a reference to the item preceding
 it and the item following it in the list (null if there is
 no such item).  Then implement methods for the following tasks:
 
-Insert at the beginning
-Insert at the end
-Remove from the beginning
-Remove from the end
-Insert before a given node
+Insert at the beginning O
+Insert at the end O
+Remove from the beginning O
+Remove from the end O
+Insert before a given node O
 Insert after a given node
-Remove a given node
+Remove a given node O
 Move to front (move an object to the front)
 Move to end (move an object to the end)
 */
