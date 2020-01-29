@@ -37,9 +37,6 @@ public class DLList
        
     }
     
-    public int getFirst(){
-        return sentinel.next.item;
-    }
     
     public int getLast(){
         return sentinel.prev.item;
