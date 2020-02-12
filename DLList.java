@@ -37,21 +37,21 @@ public class DLList
        
     }
     
-    public int getFirst(){
+    public int getBeginning(){
     	return sentinel.next.item;
     }
     
-    public int getLast(){
+    public int getAfter(){
         return sentinel.prev.item;
     }
     
-    public void addFirst(int i){
+    public void insertAtBeginning(int i){
         sentinel.next = new Node(sentinel, i, sentinel.next);
         sentinel.next.next.prev = sentinel.next;
         size++;
     }
     
-    public void addLast(int i){
+    public void insertAtEnd(int i){
         sentinel.prev = new Node(sentinel.prev , i, sentinel);
         sentinel.prev.prev.next = sentinel.prev;
         size++;
@@ -70,7 +70,7 @@ public class DLList
                 return temp.item;
             }else{
                 Node temp = sentinel.prev;
-                for(int n= i; i!=n; n--){
+                for(int n= size-1; i!=n; n--){
                     temp = temp.prev;
                 }
                 return temp.item;
@@ -79,44 +79,49 @@ public class DLList
         }        
     }
     
-    public void removeFirst() {
+    public void removeFromBeginning() {
     	sentinel.next.next.prev = sentinel;
     	sentinel.next = sentinel.next.next;
     	size--;
     }
     
-    public void removeLast() {
+    public void removeFromEnd() {
     	sentinel.prev.prev.next = sentinel;
     	sentinel.prev = sentinel.prev.prev;
     	size--;
     }
 
-    public void remove(int i) {
-    	 if( i < 0 ||  size < i){
-             System.out.println("Error! index out of bound.");
+    public void remove(Node node) {
+    // 	 if( i < 0 ||  size < i){
+    //          System.out.println("Error! index out of bound.");
             
-         }else{ 
-             if(i <= size/2){
-                 Node temp = sentinel.next;
-                 for(int n= 0; i!=n; n++){
-                     temp = temp.next;
-                 }
+    //      }else{ 
+    //          if(i <= size/2){
+    //              Node temp = sentinel.next;
+    //              for(int n= 0; i!=n; n++){
+    //                  temp = temp.next;
+    //              }
                  
-                 temp.prev.next = temp.next;
-                 temp.next.prev = temp.prev;
-             }else{
-                 Node temp = sentinel.prev;
-                 for(int n= i; i!=n; n--){
-                     temp = temp.prev;
-                 }
+    //              temp.prev.next = temp.next;
+    //              temp.next.prev = temp.prev;
+    //          }else{
+    //              Node temp = sentinel.prev;
+    //              for(int n= i; i!=n; n--){
+    //                  temp = temp.prev;
+    //              }
                  
-                 temp.prev.next = temp.next;
-                 temp.next.prev = temp.prev;
-             }
-             size--;
+    //              temp.prev.next = temp.next;
+    //              temp.next.prev = temp.prev;
+    //          }
+    //          size--;
              
-         }
-    }
+    //      }
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
+    
+    
+    
+    }//change the argument to node type
     
     public void insertBefore(Node n, int i ) {
     	
@@ -124,97 +129,106 @@ public class DLList
     	n.prev = n.prev.next;
     }
     
-    public void insertBefore(Node n, int i ) {
+    public void insertAfter(Node n, int i ) {
     	
     	n.next.prev =  new Node(n,i,n.next);
     	n.next = n.next.prev;
     }
     
-    public void MoveToEnd(int i) {
-    	if( i < 0 ||  size < i){
-            System.out.println("Error! index out of bound.");
+    
+    public void MoveToEnd(Node node) {
+        
+        remove(node);
+        insertAfter(node);
+    // 	if( i < 0 ||  size < i){
+    //         System.out.println("Error! index out of bound.");
            
-        }else{ 
-            if(i <= size/2){
-                Node temp = sentinel.next;
-                for(int n= 0; i!=n; n++){
-                    temp = temp.next;
-                }
-                temp.next.prev = temp.prev;
-                temp.prev.next = temp.next;
-                temp.prev= sentienl.prev;
-                temp.next = sentinel;
-                sentinel.prev.next = temp;
-                sentinel.prev = temp;
+    //     }else{ 
+    //         if(i <= size/2){
+    //             Node temp = sentinel.next;
+    //             for(int n= 0; i!=n; n++){
+    //                 temp = temp.next;
+    //             }
+    //             temp.next.prev = temp.prev;
+    //             temp.prev.next = temp.next;
+    //             temp.prev= sentienl.prev;
+    //             temp.next = sentinel;
+    //             sentinel.prev.next = temp;
+    //             sentinel.prev = temp;
                 
-            }else{
-                Node temp = sentinel.prev;
-                for(int n= i; i!=n; n--){
-                    temp = temp.prev;
-                }
+    //         }else{
+    //             Node temp = sentinel.prev;
+    //             for(int n= i; i!=n; n--){
+    //                 temp = temp.prev;
+    //             }
                 
-                temp.next.prev = temp.prev;
-                temp.prev.next = temp.next;
-                temp.prev= sentienl.prev;
-                temp.next = sentinel;
-                sentinel.prev.next = temp;
-                sentinel.prev = temp;
-            }
+    //             temp.next.prev = temp.prev;
+    //             temp.prev.next = temp.next;
+    //             temp.prev= sentienl.prev;
+    //             temp.next = sentinel;
+    //             sentinel.prev.next = temp;
+    //             sentinel.prev = temp;
+    //         }
             
-        }
+    //     }
     }
     
-    public void moveToFront(int i) {
-    	if( i < 0 ||  size < i){
-            System.out.println("Error! index out of bound.");
+    public void moveToFront(Node node) {
+        
+        remove(node);
+        insertAtBeginning(node);
+    // 	if( i < 0 ||  size < i){
+    //         System.out.println("Error! index out of bound.");
            
-        }else{ 
-            if(i <= size/2){
-                Node temp = sentinel.next;
-                for(int n= 0; i!=n; n++){
-                    temp = temp.next;
-                }
-                temp.next.prev = temp.prev;
-                temp.prev.next = temp.next;
-                temp.prev = sentinel;
-                temp.next = sentinel.next;
-                sentinel.next.prev = temp;
-                sentinel.next = temp;
+    //     }else{ 
+    //         if(i <= size/2){
+    //             Node temp = sentinel.next;
+    //             for(int n= 0; i!=n; n++){
+    //                 temp = temp.next;
+    //             }
+    //             temp.next.prev = temp.prev;
+    //             temp.prev.next = temp.next;
+    //             temp.prev = sentinel;
+    //             temp.next = sentinel.next;
+    //             sentinel.next.prev = temp;
+    //             sentinel.next = temp;
                 
-            }else{
-                Node temp = sentinel.prev;
-                for(int n= i; i!=n; n--){
-                    temp = temp.prev;
-                }
+    //         }else{
+    //             Node temp = sentinel.prev;
+    //             for(int n= i; i!=n; n--){
+    //                 temp = temp.prev;
+    //             }
                 
-                temp.next.prev = temp.prev;
-                temp.prev.next = temp.next;
-                temp.prev = sentinel;
-                temp.next = sentinel.next;
-                sentinel.next.prev = temp;
-                sentinel.next = temp;
-            }
+    //             temp.next.prev = temp.prev;
+    //             temp.prev.next = temp.next;
+    //             temp.prev = sentinel;
+    //             temp.next = sentinel.next;
+    //             sentinel.next.prev = temp;
+    //             sentinel.next = temp;
+    //         }
             
-        }
+    //     }
     }
    
     
    
 }
 /*
-Implement a class Deque for building doubly-linked lists.
-The class should have a nested class inside it, DoubleNode,
-where each node contains a reference to the item preceding 
-it and the item following it in the list (null if there is
-no such item).  Then implement methods for the following tasks:
+public void insertAtBeginning(A value)
 
-Insert at the beginning O
-Insert at the end O
-Remove from the beginning O
-Remove from the end O
-Insert before a given node O
-Insert after a given node O
-Remove a given node O
-Move to front (move an object to the front) O
-Move to end (move an object to the end) O
+public void insertAtEnd(A value)
+
+public void removeFromBeginning()
+
+public void removeFromEnd()
+
+public void insertBefore(A value, DoubleNode node)
+
+public void insertAfter(A value, DoubleNode node)
+
+public void remove(DoubleNode node)
+
+public void moveToFront(DoubleNode node)
+
+public void moveToEnd(DoubleNode node)
 */
