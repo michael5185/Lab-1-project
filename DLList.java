@@ -41,7 +41,7 @@ public class DLList
     	return sentinel.next.item;
     }
     
-    public int getAfter(){
+    public int getEnd(){
         return sentinel.prev.item;
     }
     
@@ -139,7 +139,10 @@ public class DLList
     public void MoveToEnd(Node node) {
         
         remove(node);
-        insertAfter(node);
+        sentinel.prev.next = node;
+        node.prev = sentinel.prev;
+        node.next = sentinel;
+        sentinel.prev = node;
     // 	if( i < 0 ||  size < i){
     //         System.out.println("Error! index out of bound.");
            
@@ -176,7 +179,10 @@ public class DLList
     public void moveToFront(Node node) {
         
         remove(node);
-        insertAtBeginning(node);
+        sentinel.next.prev = node;
+        node.next = sentinel.next;
+        node.prev = sentinel;
+        sentinel.next = node;
     // 	if( i < 0 ||  size < i){
     //         System.out.println("Error! index out of bound.");
            
