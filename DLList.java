@@ -1,12 +1,12 @@
-public class DLList
+public class DLList<element>
 {
     private class Node
     {
-        public int item;
+        public element item;
         public Node next;
         public Node prev;
        
-        Node(Node p, int i, Node n){
+        Node(Node p, element i, Node n){
             prev = p;
             item = i;
             next = n;
@@ -19,15 +19,15 @@ public class DLList
     private int size;
    
     DLList(){
-        sentinel = new Node(null, 0,null );
+        sentinel = new Node(null, null, null );
         sentinel.prev = sentinel;
         sentinel.next = sentinel;
         size = 0;
        
     }
     
-    DLList(int i){
-        sentinel = new Node(null, 0,null );
+    DLList(element i){
+        sentinel = new Node(null, null,null );
         sentinel.prev = sentinel;
         sentinel.next = sentinel;
         
@@ -37,30 +37,34 @@ public class DLList
        
     }
     
-    public int getBeginning(){
+    public int size(){
+        return size;
+    }
+    
+    public element getBeginning(){
     	return sentinel.next.item;
     }
     
-    public int getEnd(){
+    public element getEnd(){
         return sentinel.prev.item;
     }
     
-    public void insertAtBeginning(int i){
+    public void insertAtBeginning(element i){
         sentinel.next = new Node(sentinel, i, sentinel.next);
         sentinel.next.next.prev = sentinel.next;
         size++;
     }
     
-    public void insertAtEnd(int i){
+    public void insertAtEnd(element i){
         sentinel.prev = new Node(sentinel.prev , i, sentinel);
         sentinel.prev.prev.next = sentinel.prev;
         size++;
     }
     
-    public int get(int i){
-    	if( i < 0 ||  size < i){
+    public element get(int i){//i is index
+    	if( i < 0 ||  size-1 < i){
             System.out.println("Error! index out of bound.");
-            return -1;
+            return null;
         }else{ 
             if(i <= size/2){
                 Node temp = sentinel.next;
@@ -121,22 +125,45 @@ public class DLList
     
     
     
-    }//change the argument to node type
+    }//changed the argument to node type
     
-    public void insertBefore(Node n, int i ) {
+    public Node getNode(int i){//i is index
+    	if( i < 0 ||  size-1 < i){
+            System.out.println("Error! index out of bound.");
+            return null;
+        }else{ 
+            if(i <= size/2){
+                Node temp = sentinel.next;
+                for(int n= 0; i!=n; n++){
+                    temp = temp.next;
+                }
+                return temp;
+            }else{
+                Node temp = sentinel.prev;
+                for(int n= size-1; i!=n; n--){
+                    temp = temp.prev;
+                }
+                return temp;
+            }
+            
+        }        
+    }//function for testing the insertBefore/insertAfter/MoveToEnd/moveToFront
+    
+    public void insertBefore(Node n, element i ) {
     	
     	n.prev.next =  new Node(n.prev,i,n);
     	n.prev = n.prev.next;
+    	size++;
     }
     
-    public void insertAfter(Node n, int i ) {
+    public void insertAfter(Node n, element i ) {
     	
     	n.next.prev =  new Node(n,i,n.next);
     	n.next = n.next.prev;
+    	size++;
     }
     
-    
-    public void MoveToEnd(Node node) {
+    public void moveToEnd(Node node) {
         
         remove(node);
         sentinel.prev.next = node;
@@ -221,20 +248,12 @@ public class DLList
 }
 /*
 public void insertAtBeginning(A value)
-
 public void insertAtEnd(A value)
-
 public void removeFromBeginning()
-
 public void removeFromEnd()
-
 public void insertBefore(A value, DoubleNode node)
-
 public void insertAfter(A value, DoubleNode node)
-
 public void remove(DoubleNode node)
-
 public void moveToFront(DoubleNode node)
-
 public void moveToEnd(DoubleNode node)
 */
