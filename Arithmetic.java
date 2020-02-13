@@ -1,4 +1,3 @@
-
 public class ArithmeticExpressionEvaluator {
 	
 
@@ -44,14 +43,14 @@ public class ArithmeticExpressionEvaluator {
 		
 		for (int i = 0; i<words.length;i++) {
 			if (!(words[i].equals("(") ||words[i].equals(")") || words[i].equals("+") ||words[i].equals("-") ||words[i].equals("*") ||words[i].equals("/") ||words[i].equals("^"))) {
-				postfix += words[i];
+				postfix = postfix + " " + words[i];
 			}
 			else if (words[i].equals("(")) {
 				stack.push(words[i]);
 			}
 			else if (words[i].equals(")")) {
 				while(!stack.isEmpty() && !stack.peek().equals("(")) {
-					postfix += stack.pop();
+					postfix = postfix + " " + stack.pop();
 					
 				}
 				if (!stack.isEmpty() && stack.peek().equals("(")) 
@@ -59,19 +58,19 @@ public class ArithmeticExpressionEvaluator {
 			}
 			else {
 				while(!stack.isEmpty() && precedance(words[i])<= precedance(stack.peek())){
-					postfix +=stack.pop();
+					postfix = postfix + " " + stack.pop();
 				}
 				stack.push(words[i]);
 			}
 		}
 
-		return postfix;
+		return postfix.substring(1);
  	}
 	
 	public static double EvaluatePostfix(String item) {
 		Stack<String> vals = new Stack<>();
 		Stack<String> opr = new Stack<>();
-		String[] words = item.split("");
+		String[] words = item.split(" ");
 		double v = 0;
 		String op = "";
 		
