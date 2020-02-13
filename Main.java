@@ -1,25 +1,54 @@
-import DLList.java;
 public class Main
 {
+    public static void printDLList(DLList lst){
+        System.out.print("-[");
+        for(int i = 0; i < lst.size(); i++){
+		    System.out.print(lst.get(i)+ " ");
+		}
+		
+		System.out.println("]");
+    }
+    
 	public static void main(String[] args) {
-		DLList list = new DLList();
-		list.insertAtBeginning(7);
-		list.insertAtBeginning(6);
-		list.insertAtBeginning(5);
-		list.insertAtBeginning(4);
-		list.insertAtBeginning(3);
-		list.insertAtBeginning(2);
-		list.insertAtBeginning(1);
-		list.insertAtBeginning(0);
-		list.insertAtEnd(8);
-		System.out.println(list.get(0));
-		System.out.println(list.get(1));
-		System.out.println(list.get(2));
-		System.out.println(list.get(3));
-		System.out.println(list.get(4));
-		System.out.println(list.get(5));
-		System.out.println(list.get(6));
-		System.out.println(list.get(7));
-		System.out.println(list.getEnd());
+		DLList<Integer> list = new DLList<>();
+		
+		for(int i = 0; i <= 8; i++){
+		    list.insertAtBeginning(i);
+		}
+		
+		printDLList(list);
+		
+		System.out.println("first element is : " + list.getBeginning() + ", last element is : " + list.getEnd());
+		list.insertAtEnd(-1);
+		System.out.println("the last element is updated into '" + list.getEnd() + "'.");
+		printDLList(list);
+		
+		list.removeFromBeginning();
+		System.out.println("the first element was removed");
+		printDLList(list);
+		
+		list.removeFromEnd();
+		System.out.println("the last element was removed");
+		printDLList(list);
+		
+		list.insertBefore(list.getNode(1),100);
+		System.out.println("100 was added in front of the second element");
+		printDLList(list);
+		
+		list.insertAfter(list.getNode(8),-1);
+		System.out.println("-1 was added after the 9th element");
+		printDLList(list);
+		
+		list.moveToFront(list.getNode(1));
+		System.out.println("100 was moved to the front");
+		printDLList(list);
+		
+		list.moveToEnd(list.getNode(0));
+		System.out.println("100 was moved to the End");
+		printDLList(list);
+		
+		
+		
+
 	}
 }
