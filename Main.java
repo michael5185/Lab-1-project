@@ -52,3 +52,18 @@ public class Main
 
 	}
 }
+//<results>
+// -[8 7 6 5 4 3 2 1 0 ]                                                                                                                           
+// first element is : 8, last element is : 0                                                                                                       
+// the last element is updated into '-1'.                                                                                                          
+// -[8 7 6 5 4 3 2 1 0 -1 ]                                                                                                                        
+// the first element was removed                                                                                                                   
+// -[7 6 5 4 3 2 1 0 -1 ]                                                                                                                          
+// the last element was removed                                                                                                                    
+// -[7 6 5 4 3 2 1 0 ]                                                                                                                             
+// 100 was added in front of the second element                                                                                                    
+// -[7 100 6 5 4 3 2 1 0 ]                                                                                                                         
+// -1 was added after the 9th element                                                                                                              
+// -[7 100 6 5 4 3 2 1 0 -1 ]                                                                                                                      
+// 100 was moved to the front                                                                                                                      
+// -[100 7 6 5 4 3 2 1 0 -1 ]  
