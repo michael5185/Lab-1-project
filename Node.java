@@ -21,7 +21,7 @@ public class Node {// corresponds to cell in a maze
        a Node d
           s
     */
-    char nextNode(Node n){//actually should be a parentNode for more clarification
+    char parentNode(Node n){//actually should be a parentNode for more clarification
         if(y > n.y) return 'w';
         if(y < n.y) return 's';
         if(x > n.x) return 'a';
@@ -31,7 +31,7 @@ public class Node {// corresponds to cell in a maze
     
     /* base on the char sign break the wall between two node*/
     void breakWall(Node n){
-        char d = nextNode(n);
+        char d = parentNode(n);
         
         switch(d){
             default:
