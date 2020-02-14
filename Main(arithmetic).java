@@ -1,3 +1,8 @@
+/****************************************************
+* CIS27 Lab 1 Q2 Evaluating Arithmetic Expressions  *
+* -Main Function and class execution                *
+* Participant : Uneeb Javed, Taeho Lee              *
+*****************************************************/
 public class Main{
     public static void main(String[] args) {
         String b = "( 1 + ( ( 2 + 3 ) * ( 4 * 5 ) ) ) ";
