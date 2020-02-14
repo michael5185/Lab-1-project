@@ -1,13 +1,8 @@
-/****************************************
-* CIS27 Lab 1 Q3 Union-Find - Maze      *
-* -Class Node for Maze implementaion    *
-* Participant : Uneeb Javed, Taeho Lee  *
-*****************************************/
 public class Node {
     
     int x;
     int y;
-    Node next;
+    Node parent;
     Wall wall;
     
     Node(){
@@ -18,7 +13,7 @@ public class Node {
         wall = new Wall();
         this.y = y;
         this.x = x;
-        next = this;
+        parent = this;
     }
     
     /*return position char sign base on the next Node n position
