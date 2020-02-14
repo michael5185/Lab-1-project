@@ -1,8 +1,8 @@
-public class Node {
+public class Node {// corresponds to cell in a maze
     
     int x;
     int y;
-    Node parent;
+    Node parent;// the actuall part that stores the parent of each Nodes. implementation of quick-union
     Wall wall;
     
     Node(){
