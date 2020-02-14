@@ -1,3 +1,8 @@
+/****************************************
+* CIS27 Lab 1 Q1 doubly linked list     *
+* -Main Function and class execution	*
+* Participant : Uneeb Javed, Taeho Lee  *
+****************************************/
 public class Main
 {
     public static void printDLList(DLList lst){
