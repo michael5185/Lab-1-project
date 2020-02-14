@@ -42,10 +42,12 @@ public class Maze {
 		Node first = find(a);
         Node second = find(b);
         if(first == second){
-        	System.out.print(a.x + " " + a.y);
             return false;
         }
         first.parent = second;
+	System.out.print("("a.x + " " + a.y+")");
+		System.out.print(", ");
+	System.out.print("("b.x + " " + b.y+")");
         System.out.println();
         a.breakWall(b);
         return true;
