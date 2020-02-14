@@ -20,8 +20,8 @@ public class DLList<element>
        
     }
    
-    private Node sentinel;
-    private int size;
+    private Node sentinel;// applied sentinel method instead of null method
+    private int size;// keeps track of size in order to increase efficiency
    
     DLList(){
         sentinel = new Node(null, null, null );
@@ -67,7 +67,7 @@ public class DLList<element>
     }
     
     public element get(int i){// i is an index like an array
-    	if( i < 0 ||  size-1 < i){
+    	if( i < 0 ||  size-1 < i){//approaching the required index more efficiently
             System.out.println("Error! index out of bound.");
             return null;
         }else{ 
@@ -252,6 +252,7 @@ public class DLList<element>
    
 }
 /*
+<API required>
 public void insertAtBeginning(A value)
 public void insertAtEnd(A value)
 public void removeFromBeginning()
