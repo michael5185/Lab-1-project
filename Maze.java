@@ -19,18 +19,22 @@ public class Maze {
 		for(int i =0; i<size;i++) {
 			for(int j=0;j<size;j++) {
 				maze[i][j] = new Node(i,j);
+				//System.out.print(i + "" + j);
+				//System.out.print(" ");
 			}
+			System.out.println();
 		}
 	}
 	public Node find(Node n) {
-		while(n.next != n) {
-			n=n.next;
-			 }
+		while(n.parent != n) {
+			n=n.parent;
+		}
 		return n;
 	}
 	public boolean destroyed() {
-		if(find(maze[size-1][size-1]) == find(maze[0][0]))
-			return true;
+		if(find(maze[size-1][size-1]) == find(maze[0][0])) {
+			//System.out.println(maze[0][0]);
+			return true;}
 		else
 			return false;
 	}
@@ -38,9 +42,11 @@ public class Maze {
 		Node first = find(a);
         Node second = find(b);
         if(first == second){
+        	System.out.print(a.x + " " + a.y);
             return false;
         }
-        first.next = second;
+        first.parent = second;
+        System.out.println();
         a.breakWall(b);
         return true;
 	}
