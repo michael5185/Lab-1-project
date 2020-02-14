@@ -1,3 +1,9 @@
+/****************************************
+* CIS27 Lab 1 Q1 doubly linked list     *
+* -Class implementation                 *
+* Participant : Uneeb Javed, Taeho Lee  *
+****************************************/
+
 public class DLList<element>
 {
     private class Node
