@@ -31,16 +31,17 @@ public class Maze {
 			System.out.println();
 		}
 	}
-	//this function is a different implementation of find in the quick find algorithm. instead of returning the value of an index, this find takes in a Node (which is a point or a coordinate in our grid)
+	//this function is a different implementation of find in the quick union algorithm. instead of returning the value of an index, this find takes in a Node (which is a point or a coordinate in our grid)
 	//and if the parent of the node is not the same as itself (meaning it doesn't have a parent/it is the parent of its node) then it returns the node
 	//the whole idea of this is to check if the node is connected to other nodes. because the way i built nodes are like the ones in a list, all nodes are connected in respect to parents(previous nodes)
-	//so 
+	//so if i want to check if two points are connected or in "union", then the way i check it is using find.
 	public Node find(Node n) {
 		while(n.parent != n) {
 			n=n.parent;
 		}
 		return n;
 	}
+	//this function uses find as a way to check if a node is not connected to anything before it (it can have a child) 
 	public boolean destroyed() {
 		if(find(maze[size-1][size-1]) == find(maze[0][0])) {
 			//System.out.println(maze[0][0]);
@@ -94,12 +95,14 @@ public class Maze {
 		} while(x >(size-1) || x<0||y>(size-1)||y<0);
 		return maze[y][x];
 	}
+	//unlike the union function in the quick union algorithm which uses two inputs and connects them together, this union uses the idea that if 
     public void union(){
         while(!destroyed()){
             Node randomNode = randomNode(size);
             join(randomNode, connectedNode(randomNode));
         }
     }
+    
     public String nodeAndWall(Node n){
         Wall w  = n.wall;
         if(w.top && w.down && w.right && w.left)
@@ -134,6 +137,9 @@ public class Maze {
             return "\u2578";
         return " ";
     }
+    
+    //displays the complete structure of our final matrix.
+    //this basically uses the addresses given in nodeAndWall for each node after destroying all blocks and prints the output
     public void display(){
         for(int i = 0; i < size; i++){
             for(int j = 0; j < size; j++){
@@ -143,6 +149,7 @@ public class Maze {
             System.out.println();
         }
     }
+    //this is the function that initiates the process of constructing a maze
     public void run(){
         make();
         union();
