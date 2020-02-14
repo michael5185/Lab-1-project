@@ -41,7 +41,9 @@ public class Maze {
 		}
 		return n;
 	}
-	//this function uses find as a way to check if a node is not connected to anything before it (it can have a child) 
+	//this function uses find as a way to check if a node is not connected to anything before it (it can have a child) which means if it is a root and if this node is connected to the upperleft most corner
+	// the (0,0) Node then the path between two nodes has been made. this is because their must only be one connected path between the upperleft most Node with the bottomright Node
+	
 	public boolean destroyed() {
 		if(find(maze[size-1][size-1]) == find(maze[0][0])) {
 			//System.out.println(maze[0][0]);
@@ -49,6 +51,9 @@ public class Maze {
 		else
 			return false;
 	}
+	//this function does not actually join two Nodes. it checks that if the parent of the two nodes (in reality it checks if one node (a) is the child of another node (b).
+	//if its true then that means that we have a connection already built. if we dont, then we print out the coordinates of the nodes that are neighboring each other. this is a numerical construction of 
+	//the grid that we want to present although because of lack of time and a huge mistake on my side, this question has not been constructed perfectly to the point.
 	public boolean join(Node a, Node b) {
 		Node first = find(a);
         Node second = find(b);
@@ -64,6 +69,8 @@ public class Maze {
         a.breakWall(b);
         return true;
 	}
+	//connectedNode basically moves from one Node to another. this is done randomly by having different cases between 0-3 to move the x or the y coordinate of the pointer to another Node
+	//basically we randomly choose a number, add it or suntract it from our current Node coordiantes and return that Node in the matrix
 	public Node connectedNode(Node a) {
 		Random rand;
 		int x;
@@ -95,14 +102,18 @@ public class Maze {
 		} while(x >(size-1) || x<0||y>(size-1)||y<0);
 		return maze[y][x];
 	}
-	//unlike the union function in the quick union algorithm which uses two inputs and connects them together, this union uses the idea that if 
+	//unlike the union function in the quick union algorithm which uses two inputs and connects them together, this union uses find,destroyed, and connectedNode to search for random Nodes and destroy connections
+	//until we have one specific path
+	//this is very similar to the book union algorithm because this function also runs with the idea of going through all the points/Nodes and changing each Node's connectivity.
+	
     public void union(){
         while(!destroyed()){
             Node randomNode = randomNode(size);
             join(randomNode, connectedNode(randomNode));
         }
     }
-    
+    //i cannot write much about this because I got the addresses of each given expression in the "if" from google and due to submission being in 6 minutes. the idea of this is to make a visual representation
+    //of our maze
     public String nodeAndWall(Node n){
         Wall w  = n.wall;
         if(w.top && w.down && w.right && w.left)
