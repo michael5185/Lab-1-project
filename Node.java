@@ -21,7 +21,7 @@ public class Node {// corresponds to cell in a maze
        a Node d
           s
     */
-    char nextNode(Node n){
+    char nextNode(Node n){//actually should be a parentNode for more clarification
         if(y > n.y) return 'w';
         if(y < n.y) return 's';
         if(x > n.x) return 'a';
