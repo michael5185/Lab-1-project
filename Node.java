@@ -3,7 +3,7 @@ public class Node {// corresponds to cell in a maze
     int x;
     int y;
     Node parent;// the actuall part that stores the parent of each Nodes. implementation of quick-union
-    Wall wall;
+    Wall wall;//wall of each cells for drawing the maze 
     
     Node(){
         
