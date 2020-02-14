@@ -42,7 +42,7 @@ public class DLList<element>
        
     }
     
-    public int size(){
+    public int size(){//needed for PrintDLList function in Main.java
         return size;
     }
     
@@ -66,7 +66,7 @@ public class DLList<element>
         size++;
     }
     
-    public element get(int i){//i is index
+    public element get(int i){// i is an index like an array
     	if( i < 0 ||  size-1 < i){
             System.out.println("Error! index out of bound.");
             return null;
@@ -86,7 +86,7 @@ public class DLList<element>
             }
             
         }        
-    }
+    }//made it for convenience 
     
     public void removeFromBeginning() {
     	sentinel.next.next.prev = sentinel;
@@ -101,7 +101,7 @@ public class DLList<element>
     }
 
     public void remove(Node node) {
-    // 	 if( i < 0 ||  size < i){
+    // 	 if( i < 0 ||  size < i){// if the argument was remove(int i) and i is index
     //          System.out.println("Error! index out of bound.");
             
     //      }else{ 
@@ -175,7 +175,7 @@ public class DLList<element>
         node.prev = sentinel.prev;
         node.next = sentinel;
         sentinel.prev = node;
-    // 	if( i < 0 ||  size < i){
+    // 	if( i < 0 ||  size < i){// if made with moveToEnd(int i) and i is index
     //         System.out.println("Error! index out of bound.");
            
     //     }else{ 
@@ -215,7 +215,7 @@ public class DLList<element>
         node.next = sentinel.next;
         node.prev = sentinel;
         sentinel.next = node;
-    // 	if( i < 0 ||  size < i){
+    // 	if( i < 0 ||  size < i){// if made with moveToFront(int i) and i is index
     //         System.out.println("Error! index out of bound.");
            
     //     }else{ 
