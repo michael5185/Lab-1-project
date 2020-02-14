@@ -4,7 +4,7 @@
 * Participant : Uneeb Javed, Taeho Lee  *
 *****************************************/
 public class Wall {
-    boolean top, down, right, left;
+    public boolean top, down, right, left;
     
     Wall(){
         //represents whether the wall in each cell is broken or not. if wall still exist, it returns false. if it's broken, it returns true
@@ -12,5 +12,6 @@ public class Wall {
         down = false;
         right = false;
         left = false;
+        //this means all the walls are not broken when initialized
 }
 }
