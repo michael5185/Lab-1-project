@@ -1,3 +1,8 @@
+/****************************************
+* CIS27 Lab 1 Q3 Union-Find - Maze      *
+* -Class Node for Maze implementaion    *
+* Participant : Uneeb Javed, Taeho Lee  *
+*****************************************/
 public class Node {
     
     int x;
