@@ -34,6 +34,8 @@ public class Node {
         char d = nextNode(n);
         
         switch(d){
+            default:
+                System.out.println("Invalid Input");
             case 'w':
                 wall.top = true;
                 n.wall.down = true;
@@ -50,8 +52,7 @@ public class Node {
                 wall.right = true;
                 n.wall.left = true;
                 break;
-            default:
-                System.out.println("Error Node");
+
         }
     }
 }
