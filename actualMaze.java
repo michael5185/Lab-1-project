@@ -1,5 +1,5 @@
 import java.util.Vector;
-a
+
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
@@ -38,8 +38,11 @@ public class Maze {
 		public int column;
 		
 		public int site() {
+			String site = "";
+			site += Integer.toString(row);
+			site += Integer.toString(column);
 			
-			return(-1); // REPLACE with your code
+			return(Integer.parseInt(site)); // REPLACE with your code
 		}
 		
 		public Cell(int r, int c) {
@@ -50,6 +53,19 @@ public class Maze {
 		public Vector<Cell> neighbors() {
 			Vector<Cell> neighbors = new Vector<>();
 			
+			if(row+1 <= ROWS-1){
+				neighbors.add(cells[row+1][column]);
+			}
+			if(row-1 >= 0){
+				neighbors.add(cells[row-1][column]);
+			}
+			if(column+1 <= COLUMNS-1){
+				neighbors.add(cells[row][column+1]);
+			}
+			if(column-1 >= 0){
+				neighbors.add(cells[row][column-1]);
+			}
+				
 		/*
 		 * Fill in this method! Add all the adjacent
 		 * cells to this cell into the "neighbors" vector.
@@ -97,10 +113,11 @@ public class Maze {
 		 * to choose a cell randomly.
 		 */
 
-		System.out.println(StdRandom.uniform(10));
-		System.out.println(StdRandom.uniform(10));
-		System.out.println(StdRandom.uniform(10));
-		System.out.println(cells[StdRandom.uniform(10)][StdRandom.uniform(10)]);
+		//System.out.println(StdRandom.uniform(Cell.neighbors().capacity));
+		//System.out.println(StdRandom.uniform(10));
+		//System.out.println(StdRandom.uniform(10));
+		//System.out.println(StdRandom.uniform(10));
+		//System.out.println(cells[StdRandom.uniform(10)][StdRandom.uniform(10)]);
 		return null; // REPLACE with your code.
 	}
 
@@ -108,10 +125,10 @@ public class Maze {
 	public void randomMaze() {
 		int startId = start().site();
 		int endId = end().site();
-		
-		while(!uf.union(startId,endId)) {
+		pickRandomCell();
+		//while(!uf.union(startId,endId)) {
 			
-		}
+		//}
 		/*
 		 * Fill in this method! Hints: use uf.connected() and uf.union().
 		 */
