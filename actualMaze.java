@@ -52,6 +52,7 @@ public class Maze {
             row = r;
             column = c;
         }
+        
         // this method looks at the neighbors of our current Cell. it checks for boundaries by
         // looking ahead of it (by adding 1 to the current row/column) and seeing if it equals
         // to our boundaries (ROW-1/COLUMN-1)
@@ -75,9 +76,6 @@ public class Maze {
             return neighbors;
         }
 
-
-
-
     }
 
     private int ROWS = 10;
@@ -85,9 +83,7 @@ public class Maze {
     private Cell[][] cells;
     private WeightedQuickUnionUF uf;
     
-    // adding a vector that tracks cells that are connected to the cell(0,0), which is why we named it
-    // path. A path from cell(0,0) to the end cell(9,9).
-    private Vector<Cell> paths = new Vector<Cell>();
+
 
     public Maze() {
         uf = new WeightedQuickUnionUF(ROWS * COLUMNS);
@@ -99,9 +95,6 @@ public class Maze {
             }
         }
 
-        //path stands for a path connected to cell(0,0). (all cells/vectors that are indirectly or
-        //directly connected to cell(0,0).
-        paths.add(cells[0][0]);
     }
 
     public Cell start() {
@@ -121,22 +114,19 @@ public class Maze {
         System.out.printf("%d %d %d %d\n", c1.row, c1.column, c2.row, c2.column);
     }
     
-    //this function uses our paths vector to choose a random cell in it and return that
+
     public Cell pickRandomCell() {
 
-        //in this approach, we will pick a random cell from the path vector, in this way, we won't
-    	// have to waste time checking if two random cells match or are coordinated to each other
-        return pickRandom(paths);
+    	//return a random cell from the matrix
+        return cells[StdRandom.uniform(10)][StdRandom.uniform(10)];
 
     }
 
     //randomMaze works by using uf.connected and uf.union.
-    // uf.connected is used to check if a random cell from our path vector and its neighbors are 
+    // uf.connected is used to check if a random cell from our matrix and its neighbors are 
     // connected.
     // if true, then we use uf.union on their corresponding coordinates to take care of that specific
     // cell (knock down its wall).
-    // we also add the neighbor of our current cell into the paths vector to show that there was
-    // a new addition to our path from cell(0,0) and cell(9,9).
     @SuppressWarnings("deprecation")
 	public void randomMaze() {
         int startId = start().site();
@@ -145,16 +135,15 @@ public class Maze {
         Cell randomPath;
 
         while(!uf.connected(startId,endId)) {
-            randomPath =pickRandomCell();
+            randomPath = pickRandomCell();
             
-            // approach: pickRandomCell() returns a random cells that are in the path vector
+            // approach: pickRandomCell() returns a random cells from our matrix
             Cell randomNeighbor = pickRandom(randomPath.neighbors());
             
             // if randomNeighbor and randomPath are not connected
             if (!uf.connected(randomPath.site(),randomNeighbor.site())) {
                 uf.union(randomPath.site(),randomNeighbor.site()); // union the cells
                 printWall(randomPath, randomNeighbor);
-                paths.add(randomNeighbor); // and include the randomNeighbor to the path Vector.
 
             }
         }
