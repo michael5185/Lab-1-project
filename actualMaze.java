@@ -65,7 +65,7 @@ public class Maze {
 			if(column-1 >= 0){
 				neighbors.add(cells[row][column-1]);
 			}
-				
+				//edit this
 		/*
 		 * Fill in this method! Add all the adjacent
 		 * cells to this cell into the "neighbors" vector.
@@ -112,29 +112,35 @@ public class Maze {
 		 * Fill in this method! Write the code
 		 * to choose a cell randomly.
 		 */
+		//printWall(cells[StdRandom.uniform(10)][StdRandom.uniform(10)],cells[StdRandom.uniform(10)][StdRandom.uniform(10)]);
+		//return cells[StdRandom.uniform(10)][StdR		ce =pickRandomCell();		ce =pickRandomCell();andom.uniform(10)];
+		return pickRandom(cells[StdRandom.uniform(10)][StdRandom.uniform(10)].neighbors());
 
-		//System.out.println(StdRandom.uniform(Cell.neighbors().capacity));
-		//System.out.println(StdRandom.uniform(10));
-		//System.out.println(StdRandom.uniform(10));
-		//System.out.println(StdRandom.uniform(10));
-		//System.out.println(cells[StdRandom.uniform(10)][StdRandom.uniform(10)]);
-		return null; // REPLACE with your code.
 	}
 
 	
 	public void randomMaze() {
 		int startId = start().site();
 		int endId = end().site();
-		pickRandomCell();
-		//while(!uf.union(startId,endId)) {
-			
-		//}
+		//printWall(pickRandom(cells[0][0]));
+		//printWall(pickRandomCell().neighbors(), pickRandomCell());
+		printWall(pickRandomCell(), cells[0][0]);
+		//System.out.print(cells.neighbors());
+		Cell ce;
+
+		while(uf.connected(startId,endId)) {
+			ce =pickRandomCell();
+			if (ce.neighbors()) {
+				
+			}
+		}
 		/*
 		 * Fill in this method! Hints: use uf.connected() and uf.union().
 		 */
 		
 	}	
 	
+
 	public static void main(String[] args) {
 		Maze m = new Maze();
 		m.randomMaze();				
