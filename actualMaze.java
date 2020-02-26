@@ -60,16 +60,16 @@ public class Maze {
         public Vector<Cell> neighbors() {
             Vector<Cell> neighbors = new Vector<>();
 
-            if(row+1 <= ROWS-1){
+            if(row+1 <= ROWS-1){//adding adjacent cell as a neighbor
                 neighbors.add(cells[row+1][column]);
             }
-            if(row-1 >= 0){
+            if(row-1 >= 0){//adding adjacent cell as a neighbor
                 neighbors.add(cells[row-1][column]);
             }
-            if(column+1 <= COLUMNS-1){
+            if(column+1 <= COLUMNS-1){//adding adjacent cell as a neighbor
                 neighbors.add(cells[row][column+1]);
             }
-            if(column-1 >= 0){
+            if(column-1 >= 0){//adding adjacent cell as a neighbor
                 neighbors.add(cells[row][column-1]);
             }
 
@@ -85,11 +85,11 @@ public class Maze {
     
 
 
-    public Maze() {
-        uf = new WeightedQuickUnionUF(ROWS * COLUMNS);
-        cells = new Cell[ROWS][COLUMNS];
+    public Maze() { 
+        uf = new WeightedQuickUnionUF(ROWS * COLUMNS);//the constructor initialize the uf with the size of the maze
+        cells = new Cell[ROWS][COLUMNS];// initializing the cells by the size of the maze
 
-        for(int i = 0; i < ROWS; i++) {
+        for(int i = 0; i < ROWS; i++) {//initializing the two-dimensional array with a new Cell 
             for(int j = 0; j < COLUMNS; j++) {
                 cells[i][j] = new Cell(i, j);
             }
@@ -98,15 +98,15 @@ public class Maze {
     }
 
     public Cell start() {
-        return cells[0][0];
+        return cells[0][0];// starting grid will be (0,0)
     }
 
     public Cell end() {
-        return cells[ROWS - 1][COLUMNS - 1];
+        return cells[ROWS - 1][COLUMNS - 1];//ending grid will be (9,9)
     }
 
     public static Cell pickRandom(Vector<Cell> cells) {
-        return(cells.get(StdRandom.uniform(cells.size())));
+        return(cells.get(StdRandom.uniform(cells.size())));//get a random cell from a vector of cells. will be used to find the neigbor of the cell
     }
 
     private static void printWall(Cell c1, Cell c2) {
@@ -138,7 +138,7 @@ public class Maze {
             randomPath = pickRandomCell();
             
             // approach: pickRandomCell() returns a random cells from our matrix
-            Cell randomNeighbor = pickRandom(randomPath.neighbors());
+            Cell randomNeighbor = pickRandom(randomPath.neighbors());// pick a random adjacent cell of randomPath
             
             // if randomNeighbor and randomPath are not connected
             if (!uf.connected(randomPath.site(),randomNeighbor.site())) {
